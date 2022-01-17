@@ -1,0 +1,3 @@
+html {
+  @apply antialiased min-h-full;
+}
