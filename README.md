@@ -1,4 +1,4 @@
-# Vue.js Starter kit
+# Vue.js starter kit
 
 [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/lecoueyl/vue3-template)
 
@@ -42,6 +42,6 @@ The default github action will build to `gh-page` when pushing on `main` branch.
 
 For a project page, the base path of the repository must be specified. Add the following secret in the Github repository Settings > Secrets > Actions
 
-| Name            | Value                    |
-| --------------- | ------------------------ |
-| VITE_BASE       | `/repository-name/`      |
+| Name                        | Value                    |
+| --------------------------- | ------------------------ |
+| VITE_BASE_PUBLIC_PATH       | `/repository-name/`      |

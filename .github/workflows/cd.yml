@@ -36,7 +36,7 @@ jobs:
 
       - name: Build
         env:
-          VITE_BASE: ${{ secrets.VITE_BASE }}
+          VITE_BASE_PUBLIC_PATH: ${{ secrets.VITE_BASE_PUBLIC_PATH }}
         run: pnpm run build
 
       - name: Deploy
