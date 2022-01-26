@@ -16,8 +16,9 @@ module.exports = {
   rules: {
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': [0, { 'packageDir ': './src/' }],
-    'max-len': ['off', {
-      code: 100,
+    'max-len': ['error', {
+      code: 160,
+      ignorePattern: 'class="([\\s\\S]*?)"|d="([\\s\\S]*?)"', // ignore classes or svg draw attributes
       ignoreUrls: true,
     }],
   },
