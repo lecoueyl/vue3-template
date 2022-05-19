@@ -1,8 +1,8 @@
-import Index from '@/pages/index.vue';
 import NotFound from '@/pages/not-found.vue';
+import Map from '@/pages/map.vue';
 
 export const routes = [
-  { path: '/', component: Index },
+  { path: '/', component: Map },
   { path: '/:path(.*)', component: NotFound },
 ];
 

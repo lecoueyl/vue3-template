@@ -7,12 +7,11 @@ module.exports = {
   extends: [
     'airbnb-base',
     'plugin:vue/vue3-recommended',
-    'plugin:tailwindcss/recommended',
   ],
   parserOptions: {
     ecmaVersion: 2021,
   },
-  plugins: ['vue', 'tailwindcss'],
+  plugins: ['vue'],
   rules: {
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': [0, { 'packageDir ': './src/' }],
@@ -22,6 +21,8 @@ module.exports = {
       ignoreUrls: true,
     }],
     'vue/multi-word-component-names': 'off',
+    'no-constructor-return': 'off',
+    'class-methods-use-this': 'off',
   },
   settings: {
     'import/resolver': {
