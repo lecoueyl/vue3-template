@@ -7,19 +7,19 @@ export default class Factory {
   }
 
   createVector({
-    type, center, radius, vertexes,
+    type, center, radius, points,
   }) {
     const { AMap } = this;
 
     switch (type) {
       case VECTOR_SHAPE_POLYGON: {
         return new AMap.Polygon({
-          path: vertexes.map((position) => new AMap.LngLat(...position)),
+          path: points.slipt(';').map((position) => new AMap.LngLat(...position.split(','))),
         });
       }
       case VECTOR_SHAPE_CIRCLE: {
         return new AMap.Circle({
-          center: new AMap.LngLat(...center),
+          center: new AMap.LngLat(...center.split(',')),
           radius,
         });
       }
@@ -37,7 +37,7 @@ export default class Factory {
       case AMap.Polygon: {
         return {
           type: VECTOR_SHAPE_POLYGON,
-          vertexes: vector.getPath().map(({ lng, lat }) => [lng, lat]),
+          points: vector.getPath().map(({ lng, lat }) => `${lng},${lat}`).join(';'),
         };
       }
       case AMap.Circle: {
@@ -45,8 +45,8 @@ export default class Factory {
         const { lng, lat } = vector.getCenter();
         return {
           type: VECTOR_SHAPE_CIRCLE,
-          center: [lng, lat],
-          radius: vector.getRadius(),
+          center: `${lng},${lat}`,
+          radius: parseInt(vector.getRadius(), 10),
         };
       }
       default: {

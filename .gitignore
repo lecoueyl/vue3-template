@@ -23,6 +23,7 @@ dist-ssr
 
 # IDE / Editor
 .idea
+.vscode
 
 # dotenv
 .env*

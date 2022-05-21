@@ -41,7 +41,7 @@ export default defineComponent({
 
     onMounted(async () => {
       const AMap = await AMapLoader.load({
-        key: import.meta.env.VITE_AMAP_KEY,
+        key: import.meta.env.VITE_AMAP_JS_KEY,
         version: '2.0',
         plugins: [
           'AMap.ToolBar',
@@ -69,7 +69,7 @@ export default defineComponent({
       map.addControl(new AMap.Scale({ position: { bottom: '40px', left: '40px' } }));
       map.addControl(new AMap.ControlBar({ position: { bottom: '80px', left: '40px' } }));
       map.addControl(new AMap.MapType({ position: { bottom: '200px', right: '40px' } }));
-      map.addControl(new AMap.Geolocation({ position: { bottom: '40px', right: '40px' } }));
+      // map.addControl(new AMap.Geolocation({ position: { bottom: '40px', right: '40px' } }));
 
       Object.assign(state, { AMap, map });
       setTimeout(Object.assign, 600, state, { initialized: true });
