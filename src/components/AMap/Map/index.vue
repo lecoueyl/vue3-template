@@ -30,6 +30,12 @@ export default defineComponent({
     useProvideMap(state);
 
     onMounted(async () => {
+      // eslint-disable-next-line no-underscore-dangle
+      window._AMapSecurityConfig = {
+        // eslint-disable-next-line no-restricted-globals
+        serviceHost: `${location.protocol}//${import.meta.env.VITE_AMAP_JS_SERVICE_HOST}/_AMapService`,
+      };
+
       const AMap = await AMapLoader.load({
         key: import.meta.env.VITE_AMAP_JS_KEY,
         version: '2.0',
