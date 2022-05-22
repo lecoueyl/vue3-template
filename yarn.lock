@@ -1736,6 +1736,11 @@ punycode@^2.1.0:
   resolved "https://registry.npmmirror.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
+qrcode.vue@^3.3.3:
+  version "3.3.3"
+  resolved "https://registry.npmmirror.com/qrcode.vue/-/qrcode.vue-3.3.3.tgz#00262244311a0ee1956fb7a0e238197ff7e14cfa"
+  integrity sha512-OsD4tQjIbxg/K6D5ZkWjBdYI9eg9K2i8qeYILdEAX5mdAydSAxV7xKmmZSP/hA12olLqEMZ9ryqDQrwa9jEMgw==
+
 qs@^6.10.3:
   version "6.10.3"
   resolved "https://registry.npmmirror.com/qs/-/qs-6.10.3.tgz#d6cde1b2ffca87b5aa57889816c5f81535e22e8e"
