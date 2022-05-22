@@ -1,0 +1,16 @@
+<script>
+import { defineComponent, onBeforeUnmount } from 'vue';
+import { useInjectMap } from '@/composables/map';
+
+export default defineComponent({
+  setup() {
+    const { AMap, map } = useInjectMap();
+    const control = new AMap.ToolBar({ position: { top: '40px', left: '40px' } });
+    map.addControl(control);
+
+    onBeforeUnmount(() => {
+      map.remove(control);
+    });
+  },
+});
+</script>

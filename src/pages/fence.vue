@@ -1,21 +1,32 @@
 <template>
   <div id="fence">
     <AMap>
-      <AMapVector :gfid="'663116'" />
+      <a-map-fit-view />
+      <a-map-search />
+      <a-map-vector v-bind="params" />
+
+      <a-map-toolbar />
+      <a-map-scale />
+      <a-map-control-bar />
+      <a-map-map-type />
     </AMap>
   </div>
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router';
 import {
   AMap,
+  AMapFitView,
+  AMapSearch,
   AMapVector,
+  AMapToolbar,
+  AMapScale,
+  AMapControlBar,
+  AMapMapType,
 } from '@/components/AMap/index';
-import { useRoute } from 'vue-router';
 
 const { params } = useRoute();
-// eslint-disable-next-line no-unused-vars
-const { gfid } = params;
 </script>
 
 <style>

@@ -141,7 +141,7 @@ export default class GeoFenceService extends Base {
    * @param {*} param0
    * @returns
    */
-  list({ gfids, page = 1, pagesize = 50 }) {
+  list({ gfids, page = 1, pagesize = 50 } = {}) {
     // TODO: outputshape 并未直接表明围栏类型
     return this.request({
       method: 'get',
@@ -188,7 +188,7 @@ export default class GeoFenceService extends Base {
    * @returns
    */
   statusByLocation({
-    location, gfids = [], page = 1, pagesize = 50,
+    location, gfids, page = 1, pagesize = 50,
   }) {
     return this.request({
       method: 'get',
@@ -196,8 +196,8 @@ export default class GeoFenceService extends Base {
       params: {
         key: this.key,
         sid: this.sid,
-        location,
-        gfids: gfids.join(','),
+        location: location.join(','),
+        ...gfids ? { gfids: gfids.join(',') } : {},
         page,
         pagesize,
       },

@@ -7,11 +7,7 @@
       size="large"
     />
     <div id="container">
-      <div v-if="state.initialized">
-        <a-map-fit-view />
-        <a-map-search />
-        <slot />
-      </div>
+      <slot v-if="state.initialized" />
     </div>
   </div>
 </template>
@@ -22,14 +18,8 @@ import {
 } from 'vue';
 import AMapLoader from '@amap/amap-jsapi-loader';
 import { useProvideMap } from '@/composables/map';
-import AMapFitView from '../FitView/index.vue';
-import AMapSearch from '../Search/index.vue';
 
 export default defineComponent({
-  components: {
-    AMapFitView,
-    AMapSearch,
-  },
   setup() {
     const state = shallowReactive({
       map: null,
@@ -64,12 +54,6 @@ export default defineComponent({
         center: new AMap.LngLat(104.065735, 30.659462),
         zoom: 12,
       });
-
-      map.addControl(new AMap.ToolBar({ position: { top: '40px', left: '40px' } }));
-      map.addControl(new AMap.Scale({ position: { bottom: '40px', left: '40px' } }));
-      map.addControl(new AMap.ControlBar({ position: { bottom: '80px', left: '40px' } }));
-      map.addControl(new AMap.MapType({ position: { bottom: '200px', right: '40px' } }));
-      // map.addControl(new AMap.Geolocation({ position: { bottom: '40px', right: '40px' } }));
 
       Object.assign(state, { AMap, map });
       setTimeout(Object.assign, 600, state, { initialized: true });

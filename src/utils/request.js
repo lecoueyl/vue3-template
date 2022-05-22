@@ -14,7 +14,10 @@ request.interceptors.response.use(
     message.error(errmsg);
     return Promise.reject(new Error(errmsg));
   },
-  (error) => Promise.reject(error),
+  (error) => {
+    message.error(error.message);
+    return Promise.reject(error);
+  },
 );
 
 export default request;

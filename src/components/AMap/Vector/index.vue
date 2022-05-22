@@ -1,6 +1,7 @@
 <template>
   <div class="vector">
     <a-card
+      v-if="!props.readOnly"
       title="区域围栏"
       style="width: 300px"
     >
@@ -68,6 +69,10 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    readOnly: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props) {
     const {
@@ -81,7 +86,7 @@ export default defineComponent({
     } = use();
     const reaOnlyRef = computed(() => !(drawerRef.value || editorRef.value));
 
-    const infoState = reactive({ ...props });
+    const infoState = reactive({});
 
     const service = new GeoFenceService();
 
@@ -120,6 +125,7 @@ export default defineComponent({
       clear,
       reaOnlyRef,
       handleSubmit,
+      props,
     };
   },
 });
