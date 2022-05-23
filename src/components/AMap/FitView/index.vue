@@ -29,7 +29,7 @@ export default defineComponent({
 <style>
 .fit-view {
   position: absolute;
-  bottom: 40px;
+  bottom: 90px;
   right: 80px;
   z-index: 1;
 }

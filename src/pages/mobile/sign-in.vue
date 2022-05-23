@@ -15,7 +15,7 @@
       />
       <a-map-geolocation
         ref="glRef"
-        :show-button="true"
+        :show-button="false"
         :show-circle="false"
         @init="onInit"
       />
@@ -26,7 +26,7 @@
 <script>
 import { FenceView } from '@/components/Fence/index';
 import {
-  defineComponent, reactive, ref, onMounted,
+  defineComponent, reactive, ref,
 } from 'vue';
 import {
   AMapGeolocation,
@@ -48,12 +48,10 @@ export default defineComponent({
     const glRef = ref(null);
     const state = reactive({ fences: [], position: [], loading: false });
 
-    onMounted(async () => {
-      state.fences = await service.list();
-    });
-
+    // TODO
     const onInit = async () => {
       state.position = await glRef.value.getCurrentPosition();
+      state.fences = await service.list();
     };
 
     const onSubmit = async () => {

@@ -60,7 +60,7 @@
     </a-tabs>
     <a-modal
       v-model:visible="state.previewVisible"
-      title="Basic Modal"
+      title="使用手机扫描二维码进入"
       :width="520"
       :footer="null"
     >
