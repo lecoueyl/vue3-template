@@ -1,13 +1,10 @@
 <template>
   <div id="fence-view">
-    <!-- <a-button @click="signIn">
-      签到
-    </a-button> -->
     <a-map>
       <slot />
       <a-map-fit-view />
       <a-map-vector
-        v-for="{ gfid } in state.fences"
+        v-for="{ gfid } in props.fences"
         :key="gfid"
         :gfid="gfid"
         read-only
@@ -16,25 +13,29 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import {
   AMap,
   AMapFitView,
   AMapVector,
 } from '@/components/AMap/index';
-import GeoFenceService from '@/service/GeoFence';
-import { reactive, onMounted } from 'vue';
+import { defineComponent } from 'vue';
 
-const service = new GeoFenceService();
-const state = reactive({ fences: [] });
-
-const renderFences = async () => {
-  const { results } = await service.list();
-  state.fences = results;
-};
-
-onMounted(() => {
-  renderFences();
+export default defineComponent({
+  components: {
+    AMap,
+    AMapFitView,
+    AMapVector,
+  },
+  props: {
+    fences: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  setup(props) {
+    return { props };
+  },
 });
 </script>
 

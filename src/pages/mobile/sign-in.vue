@@ -1,19 +1,21 @@
 <template>
   <div id="sign-in">
-    <fence-view>
-      <!-- <a-button
-        shape="circle"
+    <fence-view :fences="state.fences">
+      <a-button
+        class="sign-in__button"
+        shape="round"
         :loading="state.loading"
+        @click="onSubmit"
       >
-        <send-outlined />
-      </a-button> -->
+        <check-outlined />签到
+      </a-button>
       <a-map-marker
         v-if="state.position.length"
         :position="state.position"
       />
       <a-map-geolocation
         ref="glRef"
-        :show-button="false"
+        :show-button="true"
         :show-circle="false"
         @init="onInit"
       />
@@ -23,24 +25,32 @@
 
 <script>
 import { FenceView } from '@/components/Fence/index';
-import { defineComponent, reactive, ref } from 'vue';
+import {
+  defineComponent, reactive, ref, onMounted,
+} from 'vue';
 import {
   AMapGeolocation,
   AMapMarker,
 } from '@/components/AMap/index';
 import GeoFenceService from '@/service/GeoFence';
 import { message } from 'ant-design-vue';
+import { CheckOutlined } from '@ant-design/icons-vue';
 
 export default defineComponent({
   components: {
     FenceView,
     AMapGeolocation,
     AMapMarker,
+    CheckOutlined,
   },
   setup() {
     const service = new GeoFenceService();
     const glRef = ref(null);
-    const state = reactive({ position: [], loading: false });
+    const state = reactive({ fences: [], position: [], loading: false });
+
+    onMounted(async () => {
+      state.fences = await service.list();
+    });
 
     const onInit = async () => {
       state.position = await glRef.value.getCurrentPosition();
@@ -49,9 +59,9 @@ export default defineComponent({
     const onSubmit = async () => {
       try {
         state.loading = true;
-        // 默认所有围栏均启用
         const isWithinFences = await service.isWithinFences({
           location: state.position,
+          gfids: state.fences.map(({ gfid }) => gfid), // 默认所有围栏均启用
         });
         if (isWithinFences) {
           message.success('签到成功');
@@ -74,5 +84,12 @@ export default defineComponent({
 #sign-in {
   width: 100vw;
   height: 100vh;
+}
+
+.sign-in__button {
+  position: absolute;
+  right: 80px;
+  bottom: 90px;
+  z-index: 1;
 }
 </style>

@@ -18,7 +18,7 @@ export default defineComponent({
   emits: ['init'],
   setup(props, { expose, emit }) {
     const { AMap, map } = useInjectMap();
-    const geolocation = new AMap.Geolocation({ position: { bottom: '40px', right: '40px' }, ...props });
+    const geolocation = new AMap.Geolocation({ position: { bottom: '90px', right: '40px' }, ...props });
     map.addControl(geolocation);
 
     const getCurrentPosition = () => new Promise((resolve, reject) => {
