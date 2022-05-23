@@ -123,6 +123,7 @@ export default defineComponent({
             center: '104.02713,30.543607',
             radius: 304,
           },
+          type: 'circle',
         },
       ],
       selectedRowKeys: [],

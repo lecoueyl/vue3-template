@@ -50,8 +50,9 @@ export default defineComponent({
 
     // TODO
     const onInit = async () => {
+      const { results } = await service.list();
+      state.fences = results;
       state.position = await glRef.value.getCurrentPosition();
-      state.fences = await service.list();
     };
 
     const onSubmit = async () => {
@@ -86,7 +87,7 @@ export default defineComponent({
 
 .sign-in__button {
   position: absolute;
-  right: 80px;
+  right: 120px;
   bottom: 90px;
   z-index: 1;
 }
