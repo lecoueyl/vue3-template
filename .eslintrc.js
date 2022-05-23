@@ -23,6 +23,8 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
     'no-constructor-return': 'off',
     'class-methods-use-this': 'off',
+    'vue/no-unused-components': [1],
+    'no-unused-vars': [1],
   },
   settings: {
     'import/resolver': {
