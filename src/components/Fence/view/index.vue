@@ -1,11 +1,11 @@
 <template>
-  <div id="sign-in">
+  <div id="fence-view">
     <!-- <a-button @click="signIn">
       签到
     </a-button> -->
     <a-map>
+      <slot />
       <a-map-fit-view />
-      <a-map-geolocation ref="gl" />
       <a-map-vector
         v-for="{ gfid } in state.fences"
         :key="gfid"
@@ -20,15 +20,12 @@
 import {
   AMap,
   AMapFitView,
-  AMapGeolocation,
   AMapVector,
 } from '@/components/AMap/index';
 import GeoFenceService from '@/service/GeoFence';
-import { ref, reactive, onMounted } from 'vue';
-import { message } from 'ant-design-vue';
+import { reactive, onMounted } from 'vue';
 
 const service = new GeoFenceService();
-const gl = ref(null);
 const state = reactive({ fences: [] });
 
 const renderFences = async () => {
@@ -39,22 +36,10 @@ const renderFences = async () => {
 onMounted(() => {
   renderFences();
 });
-
-const submit = async () => {
-  // TODO: 改用watchCurrentPosition
-  const position = await gl.value.getCurrentPosition();
-  // 默认所有围栏均启用
-  const res = await service.statusByLocation({
-    location: position,
-  });
-  message.info(JSON.stringify(res));
-};
-
-setTimeout(submit, 1000);
 </script>
 
 <style>
-#sign-in {
+#fence-view {
   width: 100vw;
   height: 100vh;
 }

@@ -1,11 +1,24 @@
 <script>
-import { defineComponent, onBeforeUnmount, ref } from 'vue';
+import {
+  defineComponent, onBeforeUnmount, onMounted,
+} from 'vue';
 import { useInjectMap } from '@/composables/map';
 
 export default defineComponent({
-  setup(props, { expose }) {
+  props: {
+    showButton: {
+      type: Boolean,
+      default: true,
+    },
+    showCircle: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  emits: ['init'],
+  setup(props, { expose, emit }) {
     const { AMap, map } = useInjectMap();
-    const geolocation = new AMap.Geolocation({ position: { bottom: '40px', right: '40px' } });
+    const geolocation = new AMap.Geolocation({ position: { bottom: '40px', right: '40px' }, ...props });
     map.addControl(geolocation);
 
     const getCurrentPosition = () => new Promise((resolve, reject) => {
@@ -21,25 +34,36 @@ export default defineComponent({
       });
     });
 
-    // TODO: 改为 composable
-    const watchCurrentPosition = () => {
-      const positionRef = ref([]);
-      let timer = null;
+    // TODO: 待调试
+    // const useCurrentLocation = () => {
+    //   const locationRef = ref([]);
+    //   let timer = null;
 
-      const unWatch = () => {
-        clearInterval(timer);
-        timer = null;
-      };
+    //   const setLocation = async () => {
+    //     locationRef.value = await getCurrentPosition();
+    //   };
 
-      timer = setInterval(async () => {
-        positionRef.value = await getCurrentPosition();
-      }, 1000 * 10);
-      onBeforeUnmount(unWatch);
+    //   const unWatch = () => {
+    //     if (timer) {
+    //       clearInterval(timer);
+    //       timer = null;
+    //     }
+    //     map.remove(geolocation);
+    //   };
 
-      return { positionRef, unWatch };
-    };
+    //   timer = setInterval(setLocation, 1000 * 10);
+    //   setLocation();
 
-    expose({ getCurrentPosition, watchCurrentPosition });
+    //   onBeforeUnmount(unWatch);
+
+    //   return { locationRef };
+    // };
+
+    expose({ getCurrentPosition });
+
+    onMounted(() => {
+      emit('init');
+    });
 
     onBeforeUnmount(() => {
       map.remove(geolocation);

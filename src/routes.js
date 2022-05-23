@@ -1,5 +1,9 @@
 export const routes = [
   {
+    path: '/login',
+    component: () => import('@/pages/login.vue'),
+  },
+  {
     path: '/',
     redirect: '/manage',
   },
@@ -18,7 +22,7 @@ export const routes = [
   },
   {
     path: '/sign-in',
-    component: () => import('@/pages/sign-in.vue'),
+    component: () => import('@/pages/mobile/sign-in.vue'),
   },
   {
     path: '/:path(.*)',
