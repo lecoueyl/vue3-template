@@ -1,4 +1,5 @@
 import qs from 'qs';
+import { FENCE_SHAPE_POLYGON, FENCE_SHAPE_CIRCLE } from '@/constants/index';
 import Base from './Base';
 
 export default class GeoFenceService extends Base {
@@ -105,13 +106,11 @@ export default class GeoFenceService extends Base {
   }
 
   add({ type, ...rest }) {
-    // TODO
-    return type === 'circle' ? this.addCircle(rest) : this.addPolygon(rest);
+    return type === FENCE_SHAPE_CIRCLE ? this.addCircle(rest) : this.addPolygon(rest);
   }
 
   update({ type, ...rest }) {
-    // TODO
-    return type === 'circle' ? this.updateCircle(rest) : this.updatePolygon(rest);
+    return type === FENCE_SHAPE_CIRCLE ? this.updateCircle(rest) : this.updatePolygon(rest);
   }
 
   /**
@@ -141,9 +140,8 @@ export default class GeoFenceService extends Base {
    * @param {*} param0
    * @returns
    */
-  list({ gfids, page = 1, pagesize = 50 } = {}) {
-    // TODO: outputshape 并未直接表明围栏类型
-    return this.request({
+  async list({ gfids, page = 1, pagesize = 50 } = {}) {
+    const { results, ...rest } = await this.request({
       method: 'get',
       url: '/geofence/list',
       params: {
@@ -155,6 +153,14 @@ export default class GeoFenceService extends Base {
         pagesize,
       },
     });
+
+    results.forEach((r) => {
+      Object.assign(r, {
+        type: Object.prototype.hasOwnProperty.call(r.shape, 'radius') ? FENCE_SHAPE_CIRCLE : FENCE_SHAPE_POLYGON,
+      });
+    });
+
+    return { results, ...rest };
   }
 
   /**
@@ -165,18 +171,8 @@ export default class GeoFenceService extends Base {
   async detail(gfid) {
     const { results } = await this.list({ gfid });
     if (results.length) {
-      const {
-        name, desc, shape,
-      } = results[0];
-      const result = {
-        gfid, name, desc, ...shape,
-      };
-
-      Object.assign(result, {
-        type: shape.center ? 'circle' : 'polygon',
-      });
-
-      return result;
+      const { shape, ...rest } = results[0];
+      return { ...shape, ...rest };
     }
     return null;
   }
@@ -202,5 +198,15 @@ export default class GeoFenceService extends Base {
         pagesize,
       },
     });
+  }
+
+  /**
+   * 查询指定坐标是否在指定围栏内
+   * @param {*} param0
+   * @returns
+   */
+  async isWithinFences({ location, gfids }) {
+    const { results } = this.statusByLocation({ location, gfids });
+    return results.find((r) => r.in === '1');
   }
 }
