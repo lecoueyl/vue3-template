@@ -1,5 +1,8 @@
 <template>
-  <div class="fit-view">
+  <div
+    class="fit-view"
+    :style="props.position"
+  >
     <a-button
       shape="circle"
       @click="map.setFitView()"
@@ -18,10 +21,16 @@ export default defineComponent({
   components: {
     SendOutlined,
   },
-  setup() {
+  props: {
+    position: {
+      type: Object,
+      default: () => ({ bottom: '90px', right: '80px' }),
+    },
+  },
+  setup(props) {
     const { map } = useInjectMap();
 
-    return { map };
+    return { props, map };
   },
 });
 </script>
@@ -29,8 +38,6 @@ export default defineComponent({
 <style>
 .fit-view {
   position: absolute;
-  bottom: 90px;
-  right: 80px;
   z-index: 1;
 }
 </style>

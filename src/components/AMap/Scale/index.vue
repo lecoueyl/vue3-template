@@ -3,9 +3,15 @@ import { defineComponent, onBeforeUnmount } from 'vue';
 import { useInjectMap } from '@/composables/map';
 
 export default defineComponent({
-  setup() {
+  props: {
+    position: {
+      type: Object,
+      default: () => ({ bottom: '50px', left: '40px' }),
+    },
+  },
+  setup(props) {
     const { AMap, map } = useInjectMap();
-    const control = new AMap.Scale({ position: { bottom: '90px', left: '40px' } });
+    const control = new AMap.Scale({ ...props });
     map.addControl(control);
 
     onBeforeUnmount(() => {

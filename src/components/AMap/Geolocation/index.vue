@@ -14,11 +14,15 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
+    position: {
+      type: Object,
+      default: () => ({ bottom: '90px', right: '40px' }),
+    },
   },
   emits: ['init'],
   setup(props, { expose, emit }) {
     const { AMap, map } = useInjectMap();
-    const geolocation = new AMap.Geolocation({ position: { bottom: '90px', right: '40px' }, ...props });
+    const geolocation = new AMap.Geolocation({ ...props });
     map.addControl(geolocation);
 
     const getCurrentPosition = () => new Promise((resolve, reject) => {
