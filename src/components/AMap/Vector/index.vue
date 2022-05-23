@@ -1,73 +1,123 @@
 <template>
   <div class="vector">
-    <a-card
-      v-if="!props.readOnly"
-      title="区域围栏"
-      style="width: 300px"
-    >
-      <template #extra>
-        <a-button
-          type="primary"
-          shape="circle"
-          ghost
-          :disabled="!(vectorRef)"
-          @click="handleSubmit"
-        >
-          <template #icon>
-            <check-circle-outlined />
+    <a-card v-if="!props.readOnly">
+      <a-form
+        :model="formState"
+        @submit="handleSubmit"
+      >
+        <a-row>
+          <a-col :span="16">
+            <a-form-item>
+              <a-input
+                v-model:value="formState.name"
+                show-count
+                :maxlength="20"
+                placeholder="名称"
+                allow-clear
+              />
+            </a-form-item>
+          </a-col>
+          <a-col :span="8">
+            <a-form-item>
+              <a-select
+                v-model:value="formState.type"
+                disabled
+              >
+                <a-select-option :value="VECTOR_SHAPE_POLYGON">
+                  多边形
+                </a-select-option>
+                <a-select-option :value="VECTOR_SHAPE_CIRCLE">
+                  圆形
+                </a-select-option>
+              </a-select>
+            </a-form-item>
+          </a-col>
+        </a-row>
+        <a-row>
+          <a-col :span="24">
+            <a-form-item>
+              <a-textarea
+                v-model:value="formState.desc"
+                placeholder="描述"
+                allow-clear
+                :maxlength="100"
+                show-count
+              />
+            </a-form-item>
+          </a-col>
+        </a-row>
+        <a-row>
+          <a-col
+            :span="6"
+            :offset="2"
+          >
+            <a-form-item>
+              <a-button
+                type="primary"
+                html-type="submit"
+                :disabled="!(formState.name && formState.desc && formState.type && vectorRef)"
+              >
+                保存
+              </a-button>
+            </a-form-item>
+          </a-col>
+          <template v-if="reaOnlyRef">
+            <a-col
+              :span="8"
+              :offset="4"
+            >
+              <a-form-item>
+                <a-button @click="start">
+                  {{ vectorRef ? '继续' : '开始' }}绘制
+                </a-button>
+              </a-form-item>
+            </a-col>
           </template>
-        </a-button>
-      </template>
-      <div v-show="reaOnlyRef">
-        <a-button @click="start">
-          开始
-        </a-button>
-      </div>
-      <div v-show="!reaOnlyRef">
-        <!-- <a-radio-group
-          :value="typeRef"
-          button-style="solid"
-          @change="setType($event.target.value)"
-        >
-          <a-radio-button :value="VECTOR_SHAPE_POLYGON">
-            多边形
-          </a-radio-button>
-          <a-radio-button :value="VECTOR_SHAPE_CIRCLE">
-            圆形
-          </a-radio-button>
-        </a-radio-group> -->
-        <a-button
-          :disabled="!(vectorRef)"
-          @click="stop"
-        >
-          完成
-        </a-button>
-        <a-button
-          :disabled="!(vectorRef)"
-          @click="clear"
-        >
-          清空
-        </a-button>
-      </div>
+          <template v-else>
+            <a-col :span="8">
+              <a-form-item>
+                <a-button
+                  :disabled="!(vectorRef)"
+                  @click="stop"
+                >
+                  结束绘制
+                </a-button>
+              </a-form-item>
+            </a-col>
+            <a-col :span="8">
+              <a-form-item>
+                <a-button
+                  :disabled="!(vectorRef)"
+                  @click="clear"
+                >
+                  清空绘制
+                </a-button>
+              </a-form-item>
+            </a-col>
+          </template>
+        </a-row>
+      </a-form>
     </a-card>
   </div>
 </template>
 
 <script>
 import { computed, defineComponent, reactive } from 'vue';
-import { CheckCircleOutlined } from '@ant-design/icons-vue';
 import GeoFenceService from '@/service/GeoFence';
+import { useRouter } from 'vue-router';
+import { message } from 'ant-design-vue';
 import use from './composable';
 import { VECTOR_SHAPE_POLYGON, VECTOR_SHAPE_CIRCLE } from './constant';
 
 export default defineComponent({
-  components: {
-    CheckCircleOutlined,
-  },
   props: {
     gfid: {
       type: String,
       default: '',
+    },
+    type: {
+      type: String,
+      default: VECTOR_SHAPE_CIRCLE,
     },
     readOnly: {
       type: Boolean,
@@ -83,33 +133,42 @@ export default defineComponent({
       setType,
       clear,
       mountVector,
-    } = use();
+    } = use(props.type);
     const reaOnlyRef = computed(() => !(drawerRef.value || editorRef.value));
+    const router = useRouter();
 
-    const infoState = reactive({});
+    const formState = reactive({
+      gfid: props.gfid,
+      type: props.type,
+      name: '',
+      desc: '',
+    });
 
     const service = new GeoFenceService();
 
-    if (props.gfid) {
-      service.detail(props.gfid).then((res) => {
+    if (formState.gfid) {
+      service.detail(formState.gfid).then((res) => {
         const {
-          gfid, name, desc, ...rest
+          name, desc, ...rest
         } = res;
-        Object.assign(infoState, { gfid, name, desc });
+        Object.assign(formState, { name, desc });
         mountVector(rest);
       });
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
       const payload = {
         ...factory.serializeVector(vectorRef.value),
-        ...infoState,
+        ...formState,
       };
-      if (infoState.gfid) {
-        service.update(payload);
+      if (formState.gfid) {
+        await service.update(payload);
+        message.success('编辑成功');
       } else {
-        service.add(payload);
+        await service.add(payload);
+        message.success('新增成功');
       }
+      router.push('/manage');
     };
 
     return {
@@ -126,17 +185,30 @@ export default defineComponent({
       reaOnlyRef,
       handleSubmit,
       props,
+      formState,
     };
   },
 });
 </script>
 
-<style>
+<style lang="less">
 .vector {
   position: absolute;
   top: 40px;
   right: 40px;
   z-index: 1;
-  border-radius: 4px;
+
+  .ant-card-body {
+    padding: 10px;
+}
+
+  .ant-card-bordered {
+    border-radius: 4px;
+  }
+
+  .ant-form-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
 </style>

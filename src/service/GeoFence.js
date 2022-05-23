@@ -186,7 +186,6 @@ export default class GeoFenceService extends Base {
   statusByLocation({
     location, gfids, page = 1, pagesize = 50,
   }) {
-    console.log(this);
     return this.request({
       method: 'get',
       url: '/geofence/status/location',

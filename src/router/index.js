@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { useStore } from '@/store';
+import PageView from '@/layout/PageView.vue';
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.VITE_BASE_PUBLIC_PATH),
@@ -14,20 +15,23 @@ const router = createRouter({
     },
     {
       path: '/',
+      component: PageView,
       redirect: '/manage',
-    },
-    {
-      path: '/manage',
-      component: () => import('@/pages/manage.vue'),
-    },
-    {
-      path: '/fence',
-      component: () => import('@/pages/fence.vue'),
-    },
-    {
-      path: '/fence/:gfid',
-      component: () => import('@/pages/fence.vue'),
-      props: true,
+      children: [
+        {
+          path: '/manage',
+          component: () => import('@/pages/manage.vue'),
+        },
+        {
+          path: '/fence/add',
+          component: () => import('@/pages/fence.vue'),
+        },
+        {
+          path: '/fence/edit',
+          component: () => import('@/pages/fence.vue'),
+          props: true,
+        },
+      ],
     },
     {
       path: '/:path(.*)',
@@ -36,15 +40,17 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach((to, from, next) => {
-  if (['/login', '/sign-in'].includes(to.path)) {
-    return next();
-  }
-  const store = useStore();
-  if (store.hasLoggedIn) {
-    return next();
-  }
-  return next('/login');
-});
+if (import.meta.env.MODE !== 'development') {
+  router.beforeEach((to, from, next) => {
+    if (['/login', '/sign-in'].includes(to.path)) {
+      return next();
+    }
+    const store = useStore();
+    if (store.hasLoggedIn) {
+      return next();
+    }
+    return next('/login');
+  });
+}
 
 export default router;

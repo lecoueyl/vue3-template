@@ -1,19 +1,19 @@
 <template>
   <div id="fence">
-    <AMap>
+    <a-map>
       <a-map-fit-view />
       <a-map-search />
-      <a-map-vector v-bind="params" />
+      <a-map-vector v-bind="query" />
 
       <a-map-toolbar />
       <a-map-scale />
       <a-map-control-bar />
-      <a-map-map-type />
-    </AMap>
+      <!-- <a-map-map-type /> -->
+    </a-map>
   </div>
 </template>
 
-<script setup>
+<script>
 import { useRoute } from 'vue-router';
 import {
   AMap,
@@ -23,15 +23,31 @@ import {
   AMapToolbar,
   AMapScale,
   AMapControlBar,
-  AMapMapType,
+  // AMapMapType,
 } from '@/components/AMap/index';
+import { defineComponent } from 'vue';
 
-const { params } = useRoute();
+export default defineComponent({
+  components: {
+    AMap,
+    AMapFitView,
+    AMapSearch,
+    AMapVector,
+    AMapToolbar,
+    AMapScale,
+    AMapControlBar,
+    // AMapMapType,
+  },
+  setup() {
+    const { query } = useRoute();
+    return { query };
+  },
+});
 </script>
 
 <style>
 #fence {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 </style>

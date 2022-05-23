@@ -50,9 +50,9 @@ export default defineComponent({
 
     // TODO
     const onInit = async () => {
+      state.position = await glRef.value.getCurrentPosition();
       const { results } = await service.list();
       state.fences = results;
-      state.position = await glRef.value.getCurrentPosition();
     };
 
     const onSubmit = async () => {

@@ -3,13 +3,13 @@ import {
 } from 'vue';
 import { useInjectMap } from '@/composables/map';
 import Factory from './factory';
-import { DEFAULT_DRAW_STYLE, VECTOR_SHAPE_CIRCLE } from './constant';
+import { DEFAULT_DRAW_STYLE } from './constant';
 
-export default function use() {
+export default function use(type) {
   const { AMap, map } = useInjectMap();
   const factory = new Factory({ AMap, map });
 
-  const typeRef = ref(VECTOR_SHAPE_CIRCLE);
+  const typeRef = ref(type);
   const drawerRef = shallowRef(null);
   const vectorRef = shallowRef(null);
   const editorRef = shallowRef(null);
@@ -75,14 +75,16 @@ export default function use() {
     start();
   };
 
-  const setType = (type) => {
-    typeRef.value = type;
+  const setType = (val) => {
+    typeRef.value = val;
     reStart();
   };
 
   onBeforeUnmount(() => {
-    map.remove(drawerRef.value);
-    reStart();
+    if (drawerRef.value) {
+      map.remove(drawerRef.value);
+    }
+    // reStart();
   });
 
   return {
