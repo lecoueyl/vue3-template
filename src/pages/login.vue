@@ -44,18 +44,20 @@
 <script>
 import { defineComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
+import { useStore } from '@/store';
 
 export default defineComponent({
   setup() {
     const router = useRouter();
+    const store = useStore();
 
     const formState = reactive({
       username: 'admin',
       password: 'admin',
     });
 
-    // TODO: 鉴权与持久化
-    const onSuccess = () => {
+    const onSuccess = async (values) => {
+      await store.login(values);
       router.push('/manage');
     };
 
@@ -75,8 +77,7 @@ export default defineComponent({
   align-items: center;
   width: 100vw;
   height: 100vh;
-  // TODO
-  background-image: url(https://preview.pro.antdv.com/assets/background.ebcb9160.svg);
+  background-image: url("../assets/svg/background.svg");
 
   .ant-form {
     width: 600px;
