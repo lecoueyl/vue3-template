@@ -63,8 +63,6 @@ export default defineComponent({
 
       Object.assign(state, { AMap, map });
       setTimeout(Object.assign, 600, state, { initialized: true });
-
-      Reflect.deleteProperty(window, 'AMap');
     });
 
     onBeforeUnmount(() => {
