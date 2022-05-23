@@ -207,7 +207,7 @@ export default class GeoFenceService extends Base {
    * @returns
    */
   async isWithinFences({ location, gfids }) {
-    const { results } = this.statusByLocation({ location, gfids });
+    const { results } = await this.statusByLocation({ location, gfids });
     return results.find((r) => r.in === '1');
   }
 }
