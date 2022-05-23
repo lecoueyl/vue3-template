@@ -40,17 +40,15 @@ const router = createRouter({
   ],
 });
 
-if (import.meta.env.MODE !== 'development') {
-  router.beforeEach((to, from, next) => {
-    if (['/login', '/sign-in'].includes(to.path)) {
-      return next();
-    }
-    const store = useStore();
-    if (store.hasLoggedIn) {
-      return next();
-    }
-    return next('/login');
-  });
-}
+router.beforeEach((to, from, next) => {
+  if (['/login', '/sign-in'].includes(to.path)) {
+    return next();
+  }
+  const store = useStore();
+  if (store.hasLoggedIn) {
+    return next();
+  }
+  return next('/login');
+});
 
 export default router;
