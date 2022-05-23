@@ -93,7 +93,7 @@ export default defineComponent({
 
     const state = reactive({
       previewVisible: false,
-      previewURL: `${window.location.href}/#/sign-in`,
+      previewURL: `${window.location.origin}/#/sign-in`,
       columns: [
         {
           title: '名称',

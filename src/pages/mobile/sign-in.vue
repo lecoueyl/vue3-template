@@ -86,7 +86,8 @@ export default defineComponent({
 }
 
 .sign-in__button {
-  position: absolute;
+  // FIXME: 生产环境样式被覆盖
+  position: absolute !important;
   right: 120px;
   bottom: 90px;
   z-index: 1;
