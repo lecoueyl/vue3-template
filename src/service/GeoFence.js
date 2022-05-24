@@ -148,7 +148,7 @@ export default class GeoFenceService extends Base {
         key: this.key,
         sid: this.sid,
         outputshape: '1',
-        ...gfids ? { gfids } : {},
+        ...gfids ? { gfids: gfids.join(',') } : {},
         page,
         pagesize,
       },
@@ -169,7 +169,7 @@ export default class GeoFenceService extends Base {
    * @returns
    */
   async detail(gfid) {
-    const { results } = await this.list({ gfid });
+    const { results } = await this.list({ gfids: [gfid] });
     if (results.length) {
       const { shape, ...rest } = results[0];
       return { ...shape, ...rest };
