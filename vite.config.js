@@ -8,6 +8,8 @@ import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 
 export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
+  // eslint-disable-next-line no-console
+  console.log(mode, loadEnv(mode, process.cwd())); // debug jenkins
 
   return defineConfig({
     plugins: [
