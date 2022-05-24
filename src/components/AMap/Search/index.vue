@@ -13,7 +13,7 @@
 
 <script>
 import {
-  defineComponent, onBeforeUnmount, onMounted, shallowReactive,
+  defineComponent, onBeforeUnmount, onMounted,
 } from 'vue';
 import { useInjectMap } from '@/composables/map';
 
