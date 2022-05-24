@@ -61,8 +61,11 @@ export default defineComponent({
         zoom: 12,
       });
 
+      map.on('complete', () => {
+        state.initialized = true;
+      });
+
       Object.assign(state, { AMap, map });
-      setTimeout(Object.assign, 600, state, { initialized: true });
     });
 
     onBeforeUnmount(() => {

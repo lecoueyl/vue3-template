@@ -5,7 +5,7 @@
         class="sign-in__button"
         shape="round"
         :loading="state.loading"
-        @click="onSubmit"
+        @click="handleSubmit"
       >
         <check-outlined />签到
       </a-button>
@@ -17,7 +17,7 @@
         ref="glRef"
         :show-button="false"
         :show-circle="false"
-        @init="onInit"
+        @init="handleInit"
       />
     </fence-view>
   </div>
@@ -49,13 +49,13 @@ export default defineComponent({
     const state = reactive({ fences: [], position: [], loading: false });
 
     // TODO
-    const onInit = async () => {
+    const handleInit = async () => {
       state.position = await glRef.value.getCurrentPosition();
       const { results } = await service.list();
       state.fences = results;
     };
 
-    const onSubmit = async () => {
+    const handleSubmit = async () => {
       try {
         state.loading = true;
         const isWithinFences = await service.isWithinFences({
@@ -63,9 +63,9 @@ export default defineComponent({
           gfids: state.fences.map(({ gfid }) => gfid), // 默认所有围栏均启用
         });
         if (isWithinFences) {
-          message.success('签到成功');
+          message.success('签到成功！');
         } else {
-          message.error('签到失败');
+          message.error('签到失败，不在指定区域！');
         }
       } finally {
         state.loading = false;
@@ -73,7 +73,7 @@ export default defineComponent({
     };
 
     return {
-      glRef, state, onInit, onSubmit,
+      glRef, state, handleInit, handleSubmit,
     };
   },
 });
@@ -86,7 +86,6 @@ export default defineComponent({
 }
 
 .sign-in__button {
-  // FIXME: 生产环境样式被覆盖
   position: absolute !important;
   right: 120px;
   bottom: 90px;

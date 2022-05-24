@@ -1,9 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { useStore } from '@/store';
-import PageView from '@/layout/PageView.vue';
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.VITE_BASE_PUBLIC_PATH),
+  history: createWebHashHistory(),
   routes: [
     {
       path: '/login',
@@ -15,7 +14,7 @@ const router = createRouter({
     },
     {
       path: '/',
-      component: PageView,
+      component: () => import('@/layout/PageView.vue'),
       redirect: '/manage',
       children: [
         {
@@ -41,11 +40,11 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (['/login', '/sign-in'].includes(to.path)) {
-    return next();
-  }
   const store = useStore();
-  if (store.hasLoggedIn) {
+  if (
+    ['/login', '/sign-in'].includes(to.path)
+    || store.hasLoggedIn
+  ) {
     return next();
   }
   return next('/login');

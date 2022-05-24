@@ -23,10 +23,10 @@
                 v-model:value="formState.type"
                 disabled
               >
-                <a-select-option :value="VECTOR_SHAPE_POLYGON">
+                <a-select-option :value="FENCE_SHAPE_POLYGON">
                   多边形
                 </a-select-option>
-                <a-select-option :value="VECTOR_SHAPE_CIRCLE">
+                <a-select-option :value="FENCE_SHAPE_CIRCLE">
                   圆形
                 </a-select-option>
               </a-select>
@@ -106,8 +106,8 @@ import { computed, defineComponent, reactive } from 'vue';
 import GeoFenceService from '@/service/GeoFence';
 import { useRouter } from 'vue-router';
 import { message } from 'ant-design-vue';
+import { FENCE_SHAPE_POLYGON, FENCE_SHAPE_CIRCLE } from '@/constants/index';
 import use from './composable';
-import { VECTOR_SHAPE_POLYGON, VECTOR_SHAPE_CIRCLE } from './constant';
 
 export default defineComponent({
   name: 'AMapVector',
@@ -118,7 +118,7 @@ export default defineComponent({
     },
     type: {
       type: String,
-      default: VECTOR_SHAPE_CIRCLE,
+      default: FENCE_SHAPE_CIRCLE,
     },
     readOnly: {
       type: Boolean,
@@ -177,8 +177,8 @@ export default defineComponent({
       drawerRef,
       vectorRef,
       editorRef,
-      VECTOR_SHAPE_POLYGON,
-      VECTOR_SHAPE_CIRCLE,
+      FENCE_SHAPE_POLYGON,
+      FENCE_SHAPE_CIRCLE,
       start,
       stop,
       clear,

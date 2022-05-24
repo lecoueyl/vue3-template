@@ -3,7 +3,11 @@ import {
 } from 'vue';
 import { useInjectMap } from '@/composables/map';
 import Factory from './factory';
-import { DEFAULT_DRAW_STYLE } from './constant';
+
+const DEFAULT_DRAW_STYLE = {
+  fillColor: '#00b0ff',
+  strokeColor: '#80d8ff',
+};
 
 export default function use(type) {
   const { AMap, map } = useInjectMap();

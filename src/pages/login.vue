@@ -59,6 +59,7 @@ export default defineComponent({
     });
 
     const onSuccess = async (values) => {
+      // TODO: loading effect
       await store.login(values);
       await router.push('/manage');
     };

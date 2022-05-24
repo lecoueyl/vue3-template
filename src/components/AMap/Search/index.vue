@@ -27,41 +27,39 @@ export default defineComponent({
   },
   setup(props) {
     const { AMap, map } = useInjectMap();
-    const state = shallowReactive({
-      autoComplete: null,
-      placeSearch: null,
-    });
+    let autoComplete;
+    let placeSearch;
 
     onMounted(() => {
-      state.autoComplete = new AMap.Autocomplete({ input: 'a-map__search-input' });
-      state.placeSearch = new AMap.PlaceSearch({ map });
+      autoComplete = new AMap.Autocomplete({ input: 'a-map__search-input' });
+      placeSearch = new AMap.PlaceSearch({ map });
 
-      state.autoComplete.on('select', (e) => {
-        state.placeSearch.setCity(e.poi.adcode);
-        state.placeSearch.search(e.poi.name);
+      autoComplete.on('select', (e) => {
+        placeSearch.setCity(e.poi.adcode);
+        placeSearch.search(e.poi.name);
       });
     });
 
     onBeforeUnmount(() => {
-      map.remove(state.autoComplete);
-      map.remove(state.placeSearch);
+      map.remove(autoComplete);
+      map.remove(placeSearch);
     });
 
-    return { props, state };
+    return { props };
   },
 });
 </script>
 
-<style>
+<style lang="less">
 .a-map__search {
   position: absolute;
   top: 40px;
   left: 90px;
   z-index: 1;
-}
 
-.a-map__search .ant-input-affix-wrapper {
-  min-width: 320px;
-  border-radius: 4px;
+  .ant-input-affix-wrapper {
+    min-width: 320px;
+    border-radius: 4px;
+  }
 }
 </style>

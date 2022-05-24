@@ -66,6 +66,7 @@
     </a-layout>
   </a-layout>
 </template>
+
 <script>
 import {
   BorderOuterOutlined, MenuUnfoldOutlined, MenuFoldOutlined, LogoutOutlined,
@@ -75,6 +76,7 @@ import { useStore } from '@/store';
 import { useRouter } from 'vue-router';
 
 export default defineComponent({
+  name: 'PageView',
   components: {
     BorderOuterOutlined,
     MenuUnfoldOutlined,
@@ -90,6 +92,7 @@ export default defineComponent({
       collapsed: ref(false),
       store,
       async handleLogout() {
+        // TODO: loading effect
         await store.logout();
         await router.push('/login');
       },
@@ -103,40 +106,40 @@ export default defineComponent({
 #page-view {
   width: 100vw;
   height: 100vh;
-}
 
-#page-view .trigger {
-  font-size: 18px;
-  line-height: 64px;
-  padding: 0 24px;
-  cursor: pointer;
-  transition: color 0.3s;
-}
+  .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color 0.3s;
 
-#page-view .trigger:hover {
-  color: #1890ff;
-}
-
-#page-view .logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.3);
-  margin: 16px;
-}
-
-#page-view .user {
-  float: right;
-  padding: 0 20px 0 20px;
-  cursor: pointer;
-  transition: all .3s;
-
-  &:hover {
-    background: rgba(0,0,0,.025);
-    transition: all .3s;
+    &:hover {
+      color: #1890ff;
+    }
   }
 
-  img {
-    height: 24px;
-    margin-right: 8px;
+  .logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 16px;
+  }
+
+  .user {
+    float: right;
+    padding: 0 20px 0 20px;
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover {
+      background: rgba(0,0,0,.025);
+      transition: all .3s;
+    }
+
+    img {
+      height: 24px;
+      margin-right: 8px;
+    }
   }
 }
 
@@ -150,9 +153,5 @@ export default defineComponent({
   .anticon {
     margin-right: 8px;
   }
-}
-
-.site-layout .site-layout-background {
-  background: #fff;
 }
 </style>

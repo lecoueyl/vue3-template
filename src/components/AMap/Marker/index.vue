@@ -1,6 +1,6 @@
 <script>
 import {
-  onBeforeUnmount, defineComponent, shallowReactive, h, Comment,
+  onBeforeUnmount, defineComponent, h, Comment,
 } from 'vue';
 import { useInjectMap } from '@/composables/map';
 
@@ -24,23 +24,23 @@ export default defineComponent({
   setup(props) {
     const { AMap, map } = useInjectMap();
 
-    const state = shallowReactive({
+    const control = {
       marker: new AMap.Marker({
         map,
         position: new AMap.LngLat(...props.position),
         title: props.title,
         zIndex: props.zIndex,
       }),
-    });
+    };
 
-    map.add(state.marker);
+    map.add(control);
     map.setFitView();
 
     onBeforeUnmount(() => {
-      map.remove(state.marker);
+      map.remove(control);
     });
 
-    return () => h(Comment, 'Empty');
+    return () => h(Comment);
   },
 });
 </script>

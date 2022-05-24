@@ -1,4 +1,4 @@
-import { VECTOR_SHAPE_POLYGON, VECTOR_SHAPE_CIRCLE } from './constant';
+import { FENCE_SHAPE_POLYGON, FENCE_SHAPE_CIRCLE } from '@/constants/index';
 
 export default class Factory {
   constructor({ AMap, map }) {
@@ -12,12 +12,12 @@ export default class Factory {
     const { AMap } = this;
 
     switch (type) {
-      case VECTOR_SHAPE_POLYGON: {
+      case FENCE_SHAPE_POLYGON: {
         return new AMap.Polygon({
           path: points.split(';').map((position) => new AMap.LngLat(...position.split(','))),
         });
       }
-      case VECTOR_SHAPE_CIRCLE: {
+      case FENCE_SHAPE_CIRCLE: {
         return new AMap.Circle({
           center: new AMap.LngLat(...center.split(',')),
           radius,
@@ -36,7 +36,7 @@ export default class Factory {
     switch (constructor) {
       case AMap.Polygon: {
         return {
-          type: VECTOR_SHAPE_POLYGON,
+          type: FENCE_SHAPE_POLYGON,
           points: vector.getPath().map(({ lng, lat }) => `${lng},${lat}`).join(';'),
         };
       }
@@ -44,7 +44,7 @@ export default class Factory {
         // eslint-disable-next-line no-case-declarations
         const { lng, lat } = vector.getCenter();
         return {
-          type: VECTOR_SHAPE_CIRCLE,
+          type: FENCE_SHAPE_CIRCLE,
           center: `${lng},${lat}`,
           radius: parseInt(vector.getRadius(), 10),
         };
