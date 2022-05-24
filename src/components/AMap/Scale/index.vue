@@ -3,6 +3,7 @@ import { defineComponent, onBeforeUnmount } from 'vue';
 import { useInjectMap } from '@/composables/map';
 
 export default defineComponent({
+  name: 'AMapScale',
   props: {
     position: {
       type: Object,

@@ -18,6 +18,7 @@ import { defineComponent } from '@vue/runtime-core';
 import { SendOutlined } from '@ant-design/icons-vue';
 
 export default defineComponent({
+  name: 'AMapFitView',
   components: {
     SendOutlined,
   },

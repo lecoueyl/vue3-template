@@ -5,6 +5,7 @@ import {
 import { useInjectMap } from '@/composables/map';
 
 export default defineComponent({
+  name: 'AMapMarker',
   props: {
     position: {
       type: Array,

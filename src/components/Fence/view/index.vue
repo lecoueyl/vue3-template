@@ -22,6 +22,7 @@ import {
 import { defineComponent } from 'vue';
 
 export default defineComponent({
+  name: 'FenceView',
   components: {
     AMap,
     AMapFitView,

@@ -110,6 +110,7 @@ import use from './composable';
 import { VECTOR_SHAPE_POLYGON, VECTOR_SHAPE_CIRCLE } from './constant';
 
 export default defineComponent({
+  name: 'AMapVector',
   props: {
     gfid: {
       type: String,
@@ -130,7 +131,6 @@ export default defineComponent({
       factory,
       start,
       stop,
-      setType,
       clear,
       mountVector,
     } = use(props.type);
@@ -176,7 +176,6 @@ export default defineComponent({
       drawerRef,
       vectorRef,
       editorRef,
-      setType,
       VECTOR_SHAPE_POLYGON,
       VECTOR_SHAPE_CIRCLE,
       start,

@@ -1,5 +1,8 @@
 <template>
-  <div class="search">
+  <div
+    class="search"
+    :style="props.style"
+  >
     <a-input
       id="search__input"
       allow-clear
@@ -15,7 +18,14 @@ import {
 import { useInjectMap } from '@/composables/map';
 
 export default defineComponent({
-  setup() {
+  name: 'AMapSearch',
+  props: {
+    position: {
+      type: Object,
+      default: () => ({ bottom: '50px', left: '40px' }),
+    },
+  },
+  setup(props) {
     const { AMap, map } = useInjectMap();
     const state = shallowReactive({
       autoComplete: null,
@@ -37,7 +47,7 @@ export default defineComponent({
       map.remove(state.placeSearch);
     });
 
-    return { state };
+    return { props, state };
   },
 });
 </script>
