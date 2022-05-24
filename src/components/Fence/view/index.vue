@@ -4,9 +4,10 @@
       <slot />
       <a-map-fit-view />
       <a-map-vector
-        v-for="{ gfid } in props.fences"
+        v-for="{ gfid, type } in props.fences"
         :key="gfid"
         :gfid="gfid"
+        :type="type"
         read-only
       />
     </a-map>
@@ -42,7 +43,7 @@ export default defineComponent({
 
 <style>
 #fence-view {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 </style>

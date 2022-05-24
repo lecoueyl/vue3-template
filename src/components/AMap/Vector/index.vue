@@ -1,5 +1,5 @@
 <template>
-  <div class="vector">
+  <div class="a-map__vector">
     <a-card v-if="!props.readOnly">
       <a-form
         :model="formState"
@@ -124,6 +124,7 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    // TODO: 支持传入整个 config
   },
   setup(props) {
     const {
@@ -191,7 +192,7 @@ export default defineComponent({
 </script>
 
 <style lang="less">
-.vector {
+.a-map__vector {
   position: absolute;
   top: 40px;
   right: 40px;

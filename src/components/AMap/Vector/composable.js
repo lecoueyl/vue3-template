@@ -97,7 +97,7 @@ export default function use(type) {
     start,
     stop,
     clear: reStart,
-    setType,
+    setType, // 高德地图不支持矢量图类型直接转换，需后端建业务表中转支持
     mountVector,
   };
 }

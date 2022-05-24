@@ -1,6 +1,9 @@
 <template>
   <div id="manage">
-    <a-tabs type="card">
+    <a-tabs
+      v-model:activeKey="state.activeTabKey"
+      type="card"
+    >
       <template #rightExtra>
         <a-button
           :disabled="!state.dataSource.length"
@@ -76,7 +79,11 @@
         tab="围栏预览"
         :disabled="!state.dataSource.length"
       >
-      <!-- <fence-view :fences="state.dataSource" /> -->
+        <!-- TODO: 使用 watch 改进 -->
+        <fence-view
+          v-if="state.activeTabKey === '2'"
+          :fences="state.dataSource"
+        />
       </a-tab-pane>
     </a-tabs>
     <a-modal
@@ -99,13 +106,13 @@ import { defineComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { DownOutlined } from '@ant-design/icons-vue';
 import { FENCE_SHAPE_CIRCLE, FENCE_SHAPE_POLYGON } from '@/constants/index';
-// import { FenceView } from '@/components/Fence/index';
+import { FenceView } from '@/components/Fence/index';
 import QrcodeVue from 'qrcode.vue';
 import dayjs from 'dayjs';
 
 export default defineComponent({
   components: {
-    // FenceView,
+    FenceView,
     DownOutlined,
     QrcodeVue,
   },
@@ -114,6 +121,7 @@ export default defineComponent({
     const router = useRouter();
 
     const state = reactive({
+      activeTabKey: '1',
       FENCE_SHAPE_CIRCLE,
       FENCE_SHAPE_POLYGON,
       previewVisible: false,
@@ -148,21 +156,9 @@ export default defineComponent({
           customRender: ({ text }) => dayjs(text).format('YYYY-MM-DD HH:mm:ss'),
         },
       ],
-      dataSource: [
-        {
-          createtime: 1653143796862,
-          desc: '',
-          gfid: 663116,
-          modifytime: 1653220231956,
-          name: '圆形围栏测试1',
-          shape: {
-            center: '104.02713,30.543607',
-            radius: 304,
-          },
-          type: 'circle',
-        },
-      ],
+      dataSource: [],
       selectedRowKeys: [],
+      selectedRows: [],
       loading: false,
     });
 
@@ -211,6 +207,8 @@ export default defineComponent({
       },
     };
 
+    handleSearch();
+
     return {
       state,
       rowSelection,
@@ -225,9 +223,27 @@ export default defineComponent({
 
 <style lang="less">
 #manage {
+  height: 100%;
+
   & .ant-btn {
     margin-right: 8px;
     margin-bottom: 12px;
+  }
+
+  .ant-tabs {
+    height: 100%;
+
+    .ant-tabs-nav {
+      height: 44px;
+    }
+
+    .ant-tabs-content-holder {
+      height: calc(100% - 44px);
+
+      .ant-tabs-content {
+        height: 100%;
+      }
+    }
   }
 }
 </style>

@@ -13,6 +13,7 @@
       >
         <a-input
           v-model:value="formState.username"
+          placeholder="用户名: admin"
           allow-clear
           size="large"
         />
@@ -24,6 +25,7 @@
       >
         <a-input-password
           v-model:value="formState.password"
+          placeholder="密码: admin"
           allow-clear
           size="large"
         />
@@ -58,7 +60,7 @@ export default defineComponent({
 
     const onSuccess = async (values) => {
       await store.login(values);
-      router.push('/manage');
+      await router.push('/manage');
     };
 
     return {

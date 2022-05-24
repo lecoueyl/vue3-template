@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fit-view"
+    class="a-map__fit-view"
     :style="props.position"
   >
     <a-button
@@ -37,7 +37,7 @@ export default defineComponent({
 </script>
 
 <style>
-.fit-view {
+.a-map__fit-view {
   position: absolute;
   z-index: 1;
 }

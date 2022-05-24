@@ -14,7 +14,7 @@ export default class Factory {
     switch (type) {
       case VECTOR_SHAPE_POLYGON: {
         return new AMap.Polygon({
-          path: points.slipt(';').map((position) => new AMap.LngLat(...position.split(','))),
+          path: points.split(';').map((position) => new AMap.LngLat(...position.split(','))),
         });
       }
       case VECTOR_SHAPE_CIRCLE: {

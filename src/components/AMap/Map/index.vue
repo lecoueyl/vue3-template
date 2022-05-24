@@ -1,12 +1,12 @@
 <template>
-  <div id="wrapper">
+  <div id="a-map__wrapper">
     <a-spin
       v-if="!state.initialized"
-      class="wrapper__spin"
+      class="a-map__wrapper-spin"
       spinning
       size="large"
     />
-    <div id="container">
+    <div id="a-map__wrapper-container">
       <slot v-if="state.initialized" />
     </div>
   </div>
@@ -55,7 +55,7 @@ export default defineComponent({
         ],
       });
 
-      const map = new AMap.Map('container', {
+      const map = new AMap.Map('a-map__wrapper-container', {
         resizeEnable: true,
         center: new AMap.LngLat(104.065735, 30.659462),
         zoom: 12,
@@ -75,13 +75,13 @@ export default defineComponent({
 </script>
 
 <style>
-#wrapper {
+#a-map__wrapper {
   width: max(100%, 100px);
   height: max(100%, 100px);
   overflow: hidden;
 }
 
-.wrapper__spin {
+.a-map__wrapper-spin {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,7 +89,7 @@ export default defineComponent({
   height: 100%;
 }
 
-#container {
+#a-map__wrapper-container {
   width: 100%;
   height: 100%;
 }
