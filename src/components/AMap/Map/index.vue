@@ -20,6 +20,7 @@ import AMapLoader from '@amap/amap-jsapi-loader';
 import { useProvideMap } from '@/composables/map';
 
 export default defineComponent({
+  name: 'AMapMap',
   setup() {
     const state = shallowReactive({
       map: null,
@@ -32,8 +33,7 @@ export default defineComponent({
     onMounted(async () => {
       // eslint-disable-next-line no-underscore-dangle
       window._AMapSecurityConfig = {
-        // eslint-disable-next-line no-restricted-globals
-        serviceHost: `${location.protocol}//${import.meta.env.VITE_AMAP_JS_SERVICE_HOST}/_AMapService`,
+        serviceHost: `${window.location.origin}/_AMapService`,
       };
 
       const AMap = await AMapLoader.load({

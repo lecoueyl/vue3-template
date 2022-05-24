@@ -26,6 +26,15 @@ export default ({ mode }) => {
     },
     server: {
       https: true,
+      proxy: {
+        '/_AMapService': {
+          target: 'https://preview.abyssal.site',
+          changeOrigin: true,
+        },
+      },
+    },
+    build: {
+      sourcemap: true,
     },
   });
 };
