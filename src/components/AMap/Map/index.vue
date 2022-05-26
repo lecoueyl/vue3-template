@@ -57,7 +57,6 @@ export default defineComponent({
 
       const map = new AMap.Map('a-map__wrapper-container', {
         resizeEnable: true,
-        center: new AMap.LngLat(104.065735, 30.659462),
         zoom: 12,
       });
 

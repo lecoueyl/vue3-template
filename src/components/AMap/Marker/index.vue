@@ -9,7 +9,7 @@ export default defineComponent({
   props: {
     position: {
       type: Array,
-      default: () => [104.065735, 30.659462],
+      default: () => [],
     },
     title: {
       type: String,
@@ -23,11 +23,12 @@ export default defineComponent({
 
   setup(props) {
     const { AMap, map } = useInjectMap();
+    const { lng, lat } = map.getCenter();
 
     const control = {
       marker: new AMap.Marker({
         map,
-        position: new AMap.LngLat(...props.position),
+        position: new AMap.LngLat(...props.position.length ? props.position : [lng, lat]),
         title: props.title,
         zIndex: props.zIndex,
       }),
