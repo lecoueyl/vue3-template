@@ -20,10 +20,10 @@
           <a-dropdown>
             <template #overlay>
               <a-menu @click="handleAdd">
-                <a-menu-item :key="state.FENCE_SHAPE_CIRCLE">
+                <a-menu-item :key="Constants.DICTS.FENCE_SHAPE_CIRCLE">
                   圆形围栏
                 </a-menu-item>
-                <a-menu-item :key="state.FENCE_SHAPE_POLYGON">
+                <a-menu-item :key="Constants.DICTS.FENCE_SHAPE_POLYGON">
                   多边形围栏
                 </a-menu-item>
               </a-menu>
@@ -105,7 +105,7 @@ import GeoFenceService from '@/service/GeoFence';
 import { defineComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { DownOutlined } from '@ant-design/icons-vue';
-import { FENCE_SHAPE_CIRCLE, FENCE_SHAPE_POLYGON } from '@/constants/index';
+import Constants from '@/constants';
 import { FenceView } from '@/components/Fence/index';
 import QrcodeVue from 'qrcode.vue';
 import dayjs from 'dayjs';
@@ -122,8 +122,6 @@ export default defineComponent({
 
     const state = reactive({
       activeTabKey: '1',
-      FENCE_SHAPE_CIRCLE,
-      FENCE_SHAPE_POLYGON,
       previewVisible: false,
       previewURL: `${window.location.origin}/#/sign-in`,
       columns: [
@@ -141,7 +139,7 @@ export default defineComponent({
           title: '类型',
           dataIndex: 'type',
           width: 100,
-          customRender: ({ text }) => (text === FENCE_SHAPE_CIRCLE ? '圆形' : '多边形'),
+          customRender: ({ text }) => (text === Constants.DICTS.FENCE_SHAPE_CIRCLE ? '圆形' : '多边形'),
         },
         {
           title: '创建时间',
@@ -210,6 +208,7 @@ export default defineComponent({
     handleSearch();
 
     return {
+      Constants,
       state,
       rowSelection,
       handleSearch,

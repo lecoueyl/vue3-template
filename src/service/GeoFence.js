@@ -1,5 +1,5 @@
 import qs from 'qs';
-import { FENCE_SHAPE_POLYGON, FENCE_SHAPE_CIRCLE } from '@/constants/index';
+import Constants from '@/constants';
 import Base from './Base';
 
 export default class GeoFenceService extends Base {
@@ -106,11 +106,11 @@ export default class GeoFenceService extends Base {
   }
 
   add({ type, ...rest }) {
-    return type === FENCE_SHAPE_CIRCLE ? this.addCircle(rest) : this.addPolygon(rest);
+    return type === Constants.DICTS.FENCE_SHAPE_CIRCLE ? this.addCircle(rest) : this.addPolygon(rest);
   }
 
   update({ type, ...rest }) {
-    return type === FENCE_SHAPE_CIRCLE ? this.updateCircle(rest) : this.updatePolygon(rest);
+    return type === Constants.DICTS.FENCE_SHAPE_CIRCLE ? this.updateCircle(rest) : this.updatePolygon(rest);
   }
 
   /**
@@ -156,7 +156,7 @@ export default class GeoFenceService extends Base {
 
     results.forEach((r) => {
       Object.assign(r, {
-        type: Object.prototype.hasOwnProperty.call(r.shape, 'radius') ? FENCE_SHAPE_CIRCLE : FENCE_SHAPE_POLYGON,
+        type: Object.prototype.hasOwnProperty.call(r.shape, 'radius') ? Constants.DICTS.FENCE_SHAPE_CIRCLE : Constants.DICTS.FENCE_SHAPE_POLYGON,
       });
     });
 
