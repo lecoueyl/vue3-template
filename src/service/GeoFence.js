@@ -64,7 +64,7 @@ export default class GeoFenceService extends Base {
   addPolygon({
     name = '', desc = '', points,
   }) {
-    this.request({
+    return this.request({
       method: 'post',
       url: '/geofence/add/polygon',
       data: qs.stringify({
@@ -88,7 +88,7 @@ export default class GeoFenceService extends Base {
   updatePolygon({
     gfid, name = '', desc = '', points,
   }) {
-    this.request({
+    return this.request({
       method: 'post',
       url: '/geofence/update/polygon',
       data: qs.stringify({
