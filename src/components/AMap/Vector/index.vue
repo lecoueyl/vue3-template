@@ -23,10 +23,10 @@
                 v-model:value="formState.type"
                 disabled
               >
-                <a-select-option :value="Constants.DICTS.FENCE_SHAPE_POLYGON">
+                <a-select-option :value="Constants.DICTS.FENCE_TYPE_POLYGON">
                   多边形
                 </a-select-option>
-                <a-select-option :value="Constants.DICTS.FENCE_SHAPE_CIRCLE">
+                <a-select-option :value="Constants.DICTS.FENCE_TYPE_CIRCLE">
                   圆形
                 </a-select-option>
               </a-select>
@@ -113,12 +113,12 @@ export default defineComponent({
   name: 'AMapVector',
   props: {
     gfid: {
-      type: String,
-      default: '',
+      type: Number,
+      default: 0,
     },
     type: {
       type: String,
-      default: Constants.DICTS.FENCE_SHAPE_CIRCLE,
+      default: Constants.DICTS.FENCE_TYPE_CIRCLE,
     },
     readOnly: {
       type: Boolean,

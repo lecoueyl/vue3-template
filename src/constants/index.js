@@ -2,8 +2,8 @@ import { readonly } from 'vue';
 
 const Constants = {
   DICTS: {
-    FENCE_SHAPE_POLYGON: 'polygon',
-    FENCE_SHAPE_CIRCLE: 'circle',
+    FENCE_TYPE_POLYGON: 'polygon',
+    FENCE_TYPE_CIRCLE: 'circle',
   },
 };
 

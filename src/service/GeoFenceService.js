@@ -106,11 +106,11 @@ export default class GeoFenceService extends BaseService {
   }
 
   add({ type, ...rest }) {
-    return type === Constants.DICTS.FENCE_SHAPE_CIRCLE ? this.addCircle(rest) : this.addPolygon(rest);
+    return type === Constants.DICTS.FENCE_TYPE_CIRCLE ? this.addCircle(rest) : this.addPolygon(rest);
   }
 
   update({ type, ...rest }) {
-    return type === Constants.DICTS.FENCE_SHAPE_CIRCLE ? this.updateCircle(rest) : this.updatePolygon(rest);
+    return type === Constants.DICTS.FENCE_TYPE_CIRCLE ? this.updateCircle(rest) : this.updatePolygon(rest);
   }
 
   /**
@@ -156,7 +156,7 @@ export default class GeoFenceService extends BaseService {
 
     results.forEach((r) => {
       Object.assign(r, {
-        type: Object.prototype.hasOwnProperty.call(r.shape, 'radius') ? Constants.DICTS.FENCE_SHAPE_CIRCLE : Constants.DICTS.FENCE_SHAPE_POLYGON,
+        type: Object.prototype.hasOwnProperty.call(r.shape, 'radius') ? Constants.DICTS.FENCE_TYPE_CIRCLE : Constants.DICTS.FENCE_TYPE_POLYGON,
       });
     });
 
