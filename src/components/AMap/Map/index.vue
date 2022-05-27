@@ -1,12 +1,12 @@
 <template>
-  <div id="a-map__wrapper">
+  <div class="a-map-map__wrapper">
     <a-spin
       v-if="!state.initialized"
-      class="a-map__wrapper-spin"
+      class="a-map-map__wrapper-spin"
       spinning
       size="large"
     />
-    <div id="a-map__wrapper-container">
+    <div ref="containerRef" class="w-100 h-100">
       <slot v-if="state.initialized" />
     </div>
   </div>
@@ -14,7 +14,7 @@
 
 <script>
 import {
-  defineComponent, onBeforeUnmount, onMounted, shallowReactive,
+  defineComponent, onBeforeUnmount, onMounted, shallowReactive, ref,
 } from 'vue';
 import AMapLoader from '@amap/amap-jsapi-loader';
 import { useProvideMap } from '@/composables/map';
@@ -27,6 +27,7 @@ export default defineComponent({
       AMap: null,
       initialized: false,
     });
+    const containerRef = ref(null);
 
     useProvideMap(state);
 
@@ -55,7 +56,7 @@ export default defineComponent({
         ],
       });
 
-      const map = new AMap.Map('a-map__wrapper-container', {
+      const map = new AMap.Map(containerRef.value, {
         resizeEnable: true,
         zoom: 12,
       });
@@ -71,28 +72,23 @@ export default defineComponent({
       state.map.destroy();
     });
 
-    return { state };
+    return { state, containerRef };
   },
 });
 </script>
 
-<style>
-#a-map__wrapper {
+<style lang="less">
+.a-map-map__wrapper {
   width: max(100%, 100px);
   height: max(100%, 100px);
   overflow: hidden;
-}
 
-.a-map__wrapper-spin {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-#a-map__wrapper-container {
-  width: 100%;
-  height: 100%;
+  &-spin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>

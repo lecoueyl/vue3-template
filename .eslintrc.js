@@ -21,6 +21,14 @@ module.exports = {
       ignoreUrls: true,
     }],
     'vue/multi-word-component-names': 'off',
+    'vue/max-attributes-per-line': ['error', {
+      singleline: {
+        max: 3,
+      },
+      multiline: {
+        max: 3,
+      },
+    }],
     'no-constructor-return': 'off',
     'class-methods-use-this': 'off',
     'vue/no-unused-components': [1],

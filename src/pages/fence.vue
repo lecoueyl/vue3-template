@@ -1,6 +1,6 @@
 <template>
-  <div id="fence">
-    <a-map>
+  <div class="w-100 h-100">
+    <a-map-map>
       <a-map-fit-view />
       <a-map-search />
       <a-map-vector v-bind="query" />
@@ -9,7 +9,7 @@
       <a-map-scale />
       <a-map-control-bar />
       <!-- <a-map-map-type /> -->
-    </a-map>
+    </a-map-map>
   </div>
 </template>
 
@@ -26,8 +26,4 @@ export default defineComponent({
 </script>
 
 <style>
-#fence {
-  width: 100%;
-  height: 100%;
-}
 </style>

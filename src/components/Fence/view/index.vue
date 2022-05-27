@@ -1,5 +1,5 @@
 <template>
-  <div id="fence-view">
+  <div class="w-100 h-100">
     <a-map-map>
       <slot />
       <a-map-fit-view />
@@ -32,8 +32,4 @@ export default defineComponent({
 </script>
 
 <style>
-#fence-view {
-  width: 100%;
-  height: 100%;
-}
 </style>
