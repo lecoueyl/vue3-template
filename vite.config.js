@@ -16,6 +16,9 @@ export default ({ mode }) => {
       vue(),
       Components({
         resolvers: [AntDesignVueResolver()],
+        directoryAsNamespace: true,
+        dirs: ['src/components'],
+        dts: 'types/components.d.ts',
       }),
     ],
     resolve: {

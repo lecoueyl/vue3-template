@@ -9,6 +9,7 @@
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore src",
     "serve": "vite preview"
   },
+  "types": "types/components.d.ts",
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@ant-design/icons-vue": "^6.1.0",
@@ -33,6 +34,7 @@
     "less": "^4.1.2",
     "postcss": "^8.4.13",
     "postcss-html": "^1.4.1",
+    "typescript": "^4.7.2",
     "vite": "^2.9.8",
     "vite-plugin-eslint": "^1.6.0",
     "vite-svg-loader": "^3.3.0"
