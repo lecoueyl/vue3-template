@@ -1,3 +1,5 @@
+import { readonly } from 'vue';
+
 const Constants = {
   DICTS: {
     FENCE_SHAPE_POLYGON: 'polygon',
@@ -5,4 +7,4 @@ const Constants = {
   },
 };
 
-export default Constants;
+export default readonly(Constants);
