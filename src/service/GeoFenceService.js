@@ -1,8 +1,8 @@
 import qs from 'qs';
 import Constants from '@/constants';
-import Base from './Base';
+import BaseService from './BaseService';
 
-export default class GeoFenceService extends Base {
+export default class GeoFenceService extends BaseService {
   /**
    * 创建圆形围栏
    * @see https://lbs.amap.com/api/track/lieying-kaifa/api/track_fence#t2

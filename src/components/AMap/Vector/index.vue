@@ -103,7 +103,7 @@
 
 <script>
 import { computed, defineComponent, reactive } from 'vue';
-import GeoFenceService from '@/service/GeoFence';
+import { GeoFenceService } from '@/service';
 import { useRouter } from 'vue-router';
 import { message } from 'ant-design-vue';
 import Constants from '@/constants';

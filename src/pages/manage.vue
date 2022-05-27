@@ -101,7 +101,7 @@
 </template>
 
 <script>
-import GeoFenceService from '@/service/GeoFence';
+import { GeoFenceService } from '@/service';
 import { defineComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { DownOutlined } from '@ant-design/icons-vue';

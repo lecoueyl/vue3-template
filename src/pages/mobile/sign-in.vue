@@ -27,7 +27,7 @@
 import {
   defineComponent, reactive, ref,
 } from 'vue';
-import GeoFenceService from '@/service/GeoFence';
+import { GeoFenceService } from '@/service';
 import { message } from 'ant-design-vue';
 import { CheckOutlined } from '@ant-design/icons-vue';
 
