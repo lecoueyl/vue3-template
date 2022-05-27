@@ -24,23 +24,15 @@
 </template>
 
 <script>
-import { FenceView } from '@/components/Fence/index';
 import {
   defineComponent, reactive, ref,
 } from 'vue';
-import {
-  AMapGeolocation,
-  AMapMarker,
-} from '@/components/AMap/index';
 import GeoFenceService from '@/service/GeoFence';
 import { message } from 'ant-design-vue';
 import { CheckOutlined } from '@ant-design/icons-vue';
 
 export default defineComponent({
   components: {
-    FenceView,
-    AMapGeolocation,
-    AMapMarker,
     CheckOutlined,
   },
   setup() {

@@ -106,13 +106,11 @@ import { defineComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { DownOutlined } from '@ant-design/icons-vue';
 import Constants from '@/constants';
-import { FenceView } from '@/components/Fence/index';
 import QrcodeVue from 'qrcode.vue';
 import dayjs from 'dayjs';
 
 export default defineComponent({
   components: {
-    FenceView,
     DownOutlined,
     QrcodeVue,
   },

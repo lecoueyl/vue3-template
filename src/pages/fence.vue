@@ -15,29 +15,9 @@
 
 <script>
 import { useRoute } from 'vue-router';
-import {
-  AMap,
-  AMapFitView,
-  AMapSearch,
-  AMapVector,
-  AMapToolbar,
-  AMapScale,
-  AMapControlBar,
-  // AMapMapType,
-} from '@/components/AMap/index';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  components: {
-    AMap,
-    AMapFitView,
-    AMapSearch,
-    AMapVector,
-    AMapToolbar,
-    AMapScale,
-    AMapControlBar,
-    // AMapMapType,
-  },
   setup() {
     const { query } = useRoute();
     return { query };
