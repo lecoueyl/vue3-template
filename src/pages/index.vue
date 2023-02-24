@@ -9,7 +9,7 @@ onMounted(() => {
 
 <template>
   <header class="absolute inset-x-0 top-0">
-    <div class="container flex justify-end p-4 mx-auto">
+    <div class="container mx-auto flex justify-end p-4">
       <button
         class="overflow-hidden p-2"
         @click="switchTheme()"
@@ -26,7 +26,7 @@ onMounted(() => {
           <svg
             v-if="currentTheme === 'dark'"
             xmlns="http://www.w3.org/2000/svg"
-            class="w-8 h-8"
+            class="h-8 w-8"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -40,7 +40,7 @@ onMounted(() => {
           <svg
             v-else
             xmlns="http://www.w3.org/2000/svg"
-            class="w-8 h-8"
+            class="h-8 w-8"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -55,17 +55,17 @@ onMounted(() => {
     </div>
   </header>
 
-  <main class="flex flex-col justify-center items-center py-16 px-4 mx-auto max-w-3xl h-screen">
-    <h1 class="pb-20 text-6xl text-center text-gray-700 dark:text-gray-100 transition-colors">
+  <main class="mx-auto flex h-screen max-w-3xl flex-col items-center justify-center py-16 px-4">
+    <h1 class="pb-20 text-center text-6xl text-gray-700 transition-colors dark:text-gray-100">
       Vue.js starter template
     </h1>
 
-    <div class="flex justify-center pb-10 space-x-4">
+    <div class="flex justify-center space-x-4 pb-10">
       <a
         target="_blank"
         rel="noopener"
         href="https://open.vscode.dev/lecoueyl/vue3-template"
-        class="inline-flex items-center py-4 px-6 space-x-1 font-medium text-indigo-50 bg-indigo-600 hover:bg-indigo-700 rounded-md shadow-xl hover:shadow-md transition duration-300"
+        class="inline-flex items-center space-x-1 rounded-md bg-indigo-600 py-4 px-6 font-medium text-indigo-50 shadow-xl transition duration-300 hover:bg-indigo-700 hover:shadow-md"
       >
         <svg
           viewBox="0 0 24 24"
@@ -73,7 +73,7 @@ onMounted(() => {
           stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"
-          class="w-5 h-5 stroke-2"
+          class="h-5 w-5 stroke-2"
         >
           <path d="M4 8l2-1l10 13l4-2V6l-4-2L6 17l-2-1z" />
         </svg>
@@ -83,7 +83,7 @@ onMounted(() => {
         target="_blank"
         rel="noopener"
         href="https://github.com/lecoueyl/vue3-template"
-        class="inline-flex items-center py-4 px-6 space-x-1 font-medium text-indigo-50 bg-indigo-600 hover:bg-indigo-700 rounded-md shadow-xl hover:shadow-md transition duration-300"
+        class="inline-flex items-center space-x-1 rounded-md bg-indigo-600 py-4 px-6 font-medium text-indigo-50 shadow-xl transition duration-300 hover:bg-indigo-700 hover:shadow-md"
       >
         <svg
           viewBox="0 0 24 24"
@@ -91,7 +91,7 @@ onMounted(() => {
           stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"
-          class="w-5 h-5 stroke-2"
+          class="h-5 w-5 stroke-2"
         >
           <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2c2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2a4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6c-.6.6-.6 1.2-.5 2V21" />
         </svg>
