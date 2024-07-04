@@ -1,9 +1,10 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+/** @type {import('tailwindcss').Config} */
+import defaultTheme from 'tailwindcss/defaultTheme';
 
-module.exports = {
+export default {
   content: [
-    './index.html',
-    './src/**/*.{vue,js,ts,jsx,tsx}',
+    "./index.html",
+    "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   darkMode: 'class',
   theme: {
@@ -13,4 +14,5 @@ module.exports = {
       },
     },
   },
-};
+  plugins: [],
+}
