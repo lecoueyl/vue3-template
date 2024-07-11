@@ -18,7 +18,10 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
     "autoprefixer": "^10.4.13",
-    "eslint": "^9.6.0",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-tailwindcss": "^3.17.4",
     "eslint-plugin-vue": "^9.9.0",
     "postcss": "^8.4.21",

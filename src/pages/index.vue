@@ -1,10 +1,7 @@
 <script setup>
-import { onMounted } from 'vue';
-import { currentTheme, initTheme, switchTheme } from '@/composables/theme.js';
+import useTheme from '@/composables/useTheme.js';
 
-onMounted(() => {
-  initTheme();
-});
+const { currentTheme, switchTheme } = useTheme();
 </script>
 
 <template>
