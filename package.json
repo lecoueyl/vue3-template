@@ -1,5 +1,6 @@
 {
   "name": "vue3-template",
+  "type": "module",
   "version": "0.0.0",
   "scripts": {
     "build": "vite build",
@@ -15,24 +16,25 @@
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.0.0",
+    "@vitejs/plugin-vue": "^5.0.5",
     "autoprefixer": "^10.4.13",
-    "eslint": "^8.34.0",
+    "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-tailwindcss": "^3.9.0",
+    "eslint-plugin-tailwindcss": "^3.17.4",
     "eslint-plugin-vue": "^9.9.0",
     "postcss": "^8.4.21",
     "postcss-html": "^1.5.0",
-    "stylelint": "^15.2.0",
+    "stylelint": "^16.6.1",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-recommended-vue": "^1.4.0",
-    "stylelint-config-standard": "^30.0.1",
+    "stylelint-config-standard": "^36.0.1",
     "tailwindcss": "^3.2.7",
-    "vite": "^4.1.4",
+    "unplugin-auto-import": "^0.17.6",
+    "vite": "^5.3.3",
     "vite-plugin-eslint": "^1.8.1",
-    "vite-plugin-stylelint": "^4.2.0",
-    "vite-svg-loader": "^4.0.0"
+    "vite-plugin-stylelint": "^5.3.1",
+    "vite-svg-loader": "^5.1.0"
   }
 }

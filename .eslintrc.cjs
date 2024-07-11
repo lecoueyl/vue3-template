@@ -8,13 +8,17 @@ module.exports = {
     'airbnb-base',
     'plugin:vue/vue3-recommended',
     'plugin:tailwindcss/recommended',
+    './.eslintrc-auto-import.json',
   ],
   parserOptions: {
     ecmaVersion: 2021,
   },
   plugins: ['vue', 'tailwindcss'],
   rules: {
-    'import/extensions': 'off',
+    'import/extensions': ['error', 'always', {
+      js: 'always',
+      vue: 'always',
+    }],
     'import/no-extraneous-dependencies': [0, { 'packageDir ': './src/' }],
     'max-len': ['error', {
       code: 160,

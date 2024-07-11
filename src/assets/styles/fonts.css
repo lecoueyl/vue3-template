@@ -1,15 +1,15 @@
 @font-face {
   font-weight: 100 900;
-  font-family: Inter;
+  font-family: InterVariable;
   font-style: normal;
-  src: url("../fonts/Inter-roman.var.woff2") format("woff2");
+  src: url("../fonts/InterVariable.woff2") format("woff2");
   font-display: swap;
 }
 
 @font-face {
   font-weight: 100 900;
-  font-family: Inter;
+  font-family: InterVariable;
   font-style: italic;
-  src: url("../fonts/Inter-italic.var.woff2") format("woff2");
+  src: url("../fonts/InterVariable-Italic.woff2") format("woff2");
   font-display: swap;
 }
