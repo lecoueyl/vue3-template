@@ -29,3 +29,6 @@ dist-ssr
 *.local
 !.env.sample
 .stylelintcache
+
+# Auto import
+.eslintrc-auto-import.json

@@ -8,6 +8,7 @@ module.exports = {
     'airbnb-base',
     'plugin:vue/vue3-recommended',
     'plugin:tailwindcss/recommended',
+    './.eslintrc-auto-import.json',
   ],
   parserOptions: {
     ecmaVersion: 2021,

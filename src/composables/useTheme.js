@@ -1,5 +1,3 @@
-import { ref, onMounted } from 'vue';
-
 export default () => {
   const currentTheme = ref('light');
 

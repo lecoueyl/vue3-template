@@ -1,6 +1,4 @@
 <script setup>
-import useTheme from '@/composables/useTheme.js';
-
 const { currentTheme, switchTheme } = useTheme();
 </script>
 

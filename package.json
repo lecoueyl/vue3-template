@@ -31,6 +31,7 @@
     "stylelint-config-recommended-vue": "^1.4.0",
     "stylelint-config-standard": "^36.0.1",
     "tailwindcss": "^3.2.7",
+    "unplugin-auto-import": "^0.17.6",
     "vite": "^5.3.3",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-stylelint": "^5.3.1",
