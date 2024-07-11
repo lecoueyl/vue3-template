@@ -4,8 +4,6 @@
 
 # Vue.js starter template
 
-[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/lecoueyl/vue3-template)
-
 Features:
 
 - 🛠 [Vue 3](https://v3.vuejs.org/guide/introduction.html)
@@ -18,6 +16,8 @@ Features:
 - 🌗 [Light and dark mode composable](https://github.com/lecoueyl/vue3-template/blob/main/src/composables/theme.js)
 - 🔡 [Inter var font](https://rsms.me/inter/)
 - 📄 [Github pages action](https://pages.github.com)
+
+[Open in Visual Studio Code](https://open.vscode.dev/lecoueyl/vue3-template)
 
 ## Getting Started
 
@@ -45,7 +45,7 @@ pnpm run dev
 
 The default github action will build to `gh-page` when pushing on `main` branch.
 
-For a project page, the base path of the repository must be specified. Add the following secret in the Github repository Settings > Secrets > Actions
+For a project page, the base path of the repository must be specified. Add the following secret in the Github repository `Settings` > `Secrets` > `Actions`
 
 | Name                        | Value                    |
 | --------------------------- | ------------------------ |
