@@ -17,13 +17,15 @@ export default ({ mode }) => {
       svgLoader(),
       vue(),
       autoImport({
-        imports: ['vue'],
+        imports: [
+          'vue',
+          'vue-router',
+        ],
         eslintrc: {
           enabled: true,
-          filepath: './.eslintrc-auto-import.json',
-          globalsPropValue: true,
         },
         dirs: [
+          './src/components',
           './src/composables',
         ],
       }),
